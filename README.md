@@ -28,7 +28,9 @@ Perez Ojeda, Edinson Alberto----------U202320099----------Ing. Sistemas de la In
 
 Pillaca Cangana, Alex Gianmarco----------U202314975----------Ing. Sistemas de la Información
 
-Zavala Tucto, Dayanna Yhadira----------U202318920----------Ing. Sistemas de la Información    
+Zavala Tucto, Dayanna Yhadira----------U202318920----------Ing. Sistemas de la Información   
+
+
 ---------
 ---------
 
