@@ -1,7 +1,4 @@
 
-INGENIERÍA DE SISTEMAS DE LA INFORMACIÓN
-
-INGENIERÍA DE SOFTWARE 
 
 Profesor(a): Campos Benites, Silvia Adelma 
 
