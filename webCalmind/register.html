@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registrarse - CalMind</title>
+  <style>
+    body {
+      background-color: #1c1f5a;
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .login-container {
+      background-color: #2c2f7a;
+      padding: 40px 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 20px #00e6e6;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .login-container img {
+      width: 100px;
+      margin-bottom: 20px;
+    }
+
+    .login-container h2 {
+      color: #00e6e6;
+      margin-bottom: 20px;
+    }
+
+    .login-container input[type="text"],
+    .login-container input[type="email"],
+    .login-container input[type="password"] {
+      width: 100%;
+      padding: 12px;
+      margin: 8px 0;
+      border: none;
+      border-radius: 5px;
+    }
+
+    .login-container button {
+      width: 50%;
+      padding: 12px;
+      background-color: #00e6e6;
+      border: none;
+      border-radius: 5px;
+      color: #000;
+      font-weight: bold;
+      cursor: pointer;
+      margin: 15px auto;
+      display: block;
+    }
+
+    .login-container p {
+      margin-top: 15px;
+      color: #fff;
+    }
+
+    .login-container a {
+      color: #00e6e6;
+      text-decoration: none;
+    }
+
+    #registerMessage {
+      margin-top: 10px;
+      color: #ffdddd;
+    }
+  </style>
+</head>
+<body>
+  <div class="login-container">
+    <!-- Logo -->
+    <img src="img/logomid.png" alt="CalMind Logo">
+    <h2>Crear Cuenta</h2>
+    <form id="registerForm">
+      <input type="text" id="registerName" placeholder="Nombre completo" required>
+      <input type="email" id="registerEmail" placeholder="Correo electrónico" required>
+      <input type="password" id="registerPassword" placeholder="Contraseña" required>
+      <input type="password" id="registerConfirm" placeholder="Confirmar contraseña" required>
+      <button type="submit">Registrarse</button>
+      <p>¿Ya tienes cuenta? <a href="login.html">Inicia sesión</a></p>
+    </form>
+    <p id="registerMessage"></p>
+  </div>
+  <script src="main.js"></script>
+</body>
+</html>
