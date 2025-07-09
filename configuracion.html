@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Configuracion - CalMind</title>
+  <title>Configuración - CalMind</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -18,6 +18,9 @@
       padding: 15px;
       text-align: center;
     }
+    h1 {
+      margin: 0;
+    }
     main {
       margin-top: 20px;
     }
@@ -28,15 +31,98 @@
       text-decoration: none;
       font-weight: bold;
     }
+    .config-option {
+      margin-bottom: 20px;
+    }
+    .config-option label {
+      font-size: 1.1rem;
+      display: block;
+      margin-bottom: 10px;
+    }
+    .config-option select, .config-option input[type="checkbox"] {
+      padding: 10px;
+      font-size: 1rem;
+      border-radius: 5px;
+      width: 100%;
+      margin-top: 5px;
+    }
+    .config-option input[type="checkbox"] {
+      width: auto;
+    }
+    .btn {
+      padding: 10px 20px;
+      background-color: #00e6e6;
+      border: none;
+      border-radius: 5px;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .btn:hover {
+      background-color: #00b8b8;
+    }
   </style>
 </head>
 <body>
   <header>
-    <h1>Configuracion</h1>
+    <h1>Configuración - CalMind</h1>
   </header>
+  
   <main>
-    <p>Esta es la sección de <strong>Configuracion</strong> dentro del sistema CalMind.</p>
+    <p>Personaliza tu experiencia en CalMind ajustando tus preferencias:</p>
+
+    <div class="config-option">
+      <label for="themeSelector">Seleccionar Tema:</label>
+      <select id="themeSelector">
+        <option value="light">Modo Claro</option>
+        <option value="dark">Modo Oscuro</option>
+      </select>
+    </div>
+
+    <div class="config-option">
+      <label for="languageSelector">Seleccionar Idioma:</label>
+      <select id="languageSelector">
+        <option value="es">Español</option>
+        <option value="en">Inglés</option>
+      </select>
+    </div>
+
+    <div class="config-option">
+      <label for="notifications">Recibir Notificaciones:</label>
+      <input type="checkbox" id="notifications" checked /> Activar notificaciones
+    </div>
+
+    <button class="btn" onclick="applySettings()">Guardar Cambios</button>
+
     <a href="dashboard.html">← Volver al Panel</a>
   </main>
+
+  <script>
+    function applySettings() {
+      const theme = document.getElementById('themeSelector').value;
+      const language = document.getElementById('languageSelector').value;
+      const notifications = document.getElementById('notifications').checked;
+
+      if (theme === 'dark') {
+        document.body.style.backgroundColor = '#1c1f5a';
+        document.body.style.color = '#fff';
+      } else {
+        document.body.style.backgroundColor = '#f0f2f5';
+        document.body.style.color = '#1c1f5a';
+      }
+
+      if (language === 'es') {
+        alert('Idioma cambiado a Español');
+      } else {
+        alert('Language changed to English');
+      }
+
+      if (notifications) {
+        alert('Notificaciones activadas');
+      } else {
+        alert('Notificaciones desactivadas');
+      }
+    }
+  </script>
 </body>
 </html>

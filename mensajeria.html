@@ -7,7 +7,7 @@
   <style>
     body {
       font-family: Arial, sans-serif;
-      background-color: #f0f2f5;
+      background-color: #f5f7fa;
       margin: 0;
       padding: 20px;
       color: #1c1f5a;
@@ -17,26 +17,255 @@
       color: white;
       padding: 15px;
       text-align: center;
+      border-radius: 8px;
+    }
+    h1 {
+      margin: 0;
     }
     main {
+      display: flex;
+      flex-direction: column;
       margin-top: 20px;
     }
-    a {
-      display: inline-block;
+    .chat-list {
+      background-color: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      margin-bottom: 20px;
+      overflow-y: auto;
+      max-height: 300px;
+    }
+    .chat-item {
+      display: flex;
+      align-items: center;
+      padding: 15px;
+      border-bottom: 1px solid #ddd;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    .chat-item:hover {
+      background-color: #e6f7f7;
+    }
+    .chat-item img {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      margin-right: 15px;
+    }
+    .chat-item .name {
+      font-size: 1.1rem;
+      color: #1c1f5a;
+      font-weight: bold;
+    }
+    .chat-item .status {
+      font-size: 0.9rem;
+      color: #888;
+    }
+    .chat-container {
+      display: none;
+      flex-grow: 1;
+      flex-direction: column;
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      margin-bottom: 20px;
+      max-height: 400px;
+      overflow-y: scroll;
+    }
+    .message {
+      padding: 10px;
+      margin: 5px 0;
+      border-radius: 8px;
+      max-width: 60%;
+    }
+    .message.sent {
+      background-color: #00e6e6;
+      color: white;
+      align-self: flex-end;
+    }
+    .message.received {
+      background-color: #f1f1f1;
+      color: #1c1f5a;
+      align-self: flex-start;
+    }
+    .input-container {
+      display: flex;
+      align-items: center;
+      padding: 10px;
+      background-color: #ffffff;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+    .input-container input {
+      width: 85%;
+      padding: 10px;
+      font-size: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    .input-container button {
+      padding: 10px 20px;
+      background-color: #00e6e6;
+      border: none;
+      border-radius: 5px;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+      margin-left: 10px;
+    }
+    .input-container button:hover {
+      background-color: #00b8b8;
+    }
+    .back-link {
       margin-top: 20px;
       color: #00e6e6;
       text-decoration: none;
       font-weight: bold;
+      margin-bottom: 10px;
+    }
+    .back-link-top {
+      display: none;
+      color: white;
+      background-color: #1c1f5a;
+      border: none;
+      padding: 10px;
+      margin-bottom: 20px;
+      font-weight: bold;
+      cursor: pointer;
+      border-radius: 8px;
+    }
+    .back-link-top:hover {
+      background-color: #004d73;
     }
   </style>
 </head>
 <body>
+
   <header>
-    <h1>Mensajería</h1>
+    <h1>Mensajería - CalMind</h1>
   </header>
+
   <main>
-    <p>Esta es la sección de <strong>Mensajería</strong> dentro del sistema CalMind.</p>
-    <a href="dashboard.html">← Volver al Panel</a>
+    <div class="chat-list" id="chatList">
+      <div class="chat-item" onclick="openChat('Ana García', 'Trastornos del Sueño')">
+        <img src="img/usuario.png" alt="Dr. Ana García">
+        <div>
+          <div class="name">Dr. Ana García</div>
+          <div class="status">Última consulta: 12 de enero, 2025</div>
+        </div>
+      </div>
+      <div class="chat-item" onclick="openChat('Luis Pérez', 'Salud Mental')">
+        <img src="img/usuario.png" alt="Dr. Luis Pérez">
+        <div>
+          <div class="name">Dr. Luis Pérez</div>
+          <div class="status">Última consulta: 5 de enero, 2025</div>
+        </div>
+      </div>
+      <div class="chat-item" onclick="openChat('Valeria Martínez', 'Nutrición y Bienestar')">
+        <img src="img/usuario.png" alt="Dra. Valeria Martínez">
+        <div>
+          <div class="name">Dra. Valeria Martínez</div>
+          <div class="status">Última consulta: 18 de diciembre, 2024</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="chat-container" id="chatContainer">
+      <button class="back-link-top" id="backButton" onclick="backToChats()">← Regresar a Chats</button>
+
+      <div class="message received">
+        <p><strong>Terapeuta:</strong> Hola, ¿en qué puedo ayudarte hoy?</p>
+      </div>
+      <div class="message sent">
+        <p><strong>Tú:</strong> Hola, estoy teniendo problemas para dormir últimamente.</p>
+      </div>
+      <div class="message received">
+        <p><strong>Terapeuta:</strong> Entiendo. ¿Puedes contarme más sobre tu rutina antes de dormir?</p>
+      </div>
+      <div class="message sent">
+        <p><strong>Tú:</strong> Claro, suelo quedarme trabajando hasta tarde y después me cuesta conciliar el sueño.</p>
+      </div>
+      <div class="message received">
+        <p><strong>Terapeuta:</strong> Te recomendaría evitar el uso de dispositivos electrónicos al menos 1 hora antes de dormir. ¿Lo has intentado?</p>
+      </div>
+      <div class="message sent">
+        <p><strong>Tú:</strong> No, no lo he intentado, pero voy a probarlo.</p>
+      </div>
+      <div class="message received">
+        <p><strong>Terapeuta:</strong> Perfecto, vamos a hacer un seguimiento de tu progreso en la próxima sesión.</p>
+      </div>
+      <div class="message received">
+        <p><strong>Terapeuta:</strong> También podemos hablar de otras técnicas de relajación que pueden ayudarte a descansar mejor.</p>
+      </div>
+    </div>
+
+    <div class="input-container">
+      <input type="text" id="messageInput" placeholder="Escribe tu mensaje..." />
+      <button id="sendMessageButton">Enviar</button>
+    </div>
+
+    <a href="dashboard.html" class="back-link">← Volver al Panel</a>
   </main>
+
+  <script>
+    function openChat(name, specialty) {
+      document.getElementById('chatList').style.display = 'none';
+      document.getElementById('chatContainer').style.display = 'flex';
+      document.getElementById('backButton').style.display = 'inline-block';
+
+      const chatContainer = document.getElementById('chatContainer');
+      chatContainer.innerHTML = '';
+
+      const initialMessages = [
+        { type: 'received', message: `Hola, soy ${name}, especialista en ${specialty}. ¿En qué puedo ayudarte?` },
+        { type: 'sent', message: 'Hola, estoy teniendo problemas para dormir últimamente.' },
+        { type: 'received', message: 'Entiendo. ¿Puedes contarme más sobre tu rutina antes de dormir?' },
+        { type: 'sent', message: 'Claro, suelo quedarme trabajando hasta tarde y después me cuesta conciliar el sueño.' },
+        { type: 'received', message: 'Te recomendaría evitar el uso de dispositivos electrónicos al menos 1 hora antes de dormir. ¿Lo has intentado?' },
+        { type: 'sent', message: 'No, no lo he intentado, pero voy a probarlo.' },
+        { type: 'received', message: 'Perfecto, vamos a hacer un seguimiento de tu progreso en la próxima sesión.' },
+        { type: 'received', message: 'También podemos hablar de otras técnicas de relajación que pueden ayudarte a descansar mejor.' }
+      ];
+
+      initialMessages.forEach(msg => {
+        const messageDiv = document.createElement('div');
+        messageDiv.classList.add('message', msg.type);
+        messageDiv.innerHTML = `<p><strong>${msg.type === 'sent' ? 'Tú' : name}:</strong> ${msg.message}</p>`;
+        chatContainer.appendChild(messageDiv);
+      });
+
+      scrollToBottom();
+    }
+
+    function backToChats() {
+      document.getElementById('chatList').style.display = 'block';
+      document.getElementById('chatContainer').style.display = 'none';
+      document.getElementById('backButton').style.display = 'none';
+    }
+
+    function scrollToBottom() {
+      const chatContainer = document.getElementById('chatContainer');
+      chatContainer.scrollTop = chatContainer.scrollHeight;
+    }
+
+    document.getElementById('sendMessageButton').addEventListener('click', function() {
+      const messageInput = document.getElementById('messageInput');
+      const messageText = messageInput.value.trim();
+
+      if (messageText) {
+        const newMessage = document.createElement('div');
+        newMessage.classList.add('message', 'sent');
+        newMessage.innerHTML = `<p><strong>Tú:</strong> ${messageText}</p>`;
+        document.getElementById('chatContainer').appendChild(newMessage);
+        messageInput.value = '';
+        scrollToBottom();
+      }
+    });
+
+    scrollToBottom();
+  </script>
+
 </body>
 </html>

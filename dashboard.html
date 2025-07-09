@@ -35,6 +35,11 @@
       font-size: 24px;
       cursor: pointer;
       display: block;
+      transition: transform 0.3s ease;
+    }
+
+    .hamburger.open {
+      transform: rotate(90deg);
     }
 
     nav {
@@ -90,6 +95,16 @@
       width: 100%;
       bottom: 0;
     }
+
+    @media (max-width: 768px) {
+      .content {
+        padding: 15px;
+      }
+
+      .logo h2 {
+        font-size: 18px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -99,7 +114,9 @@
       <img src="img/logomid.png" alt="Logo CalMind">
       <h2>CalMind</h2>
     </div>
-    <div class="hamburger" onclick="toggleMenu()">☰</div>
+    <button class="hamburger" onclick="toggleMenu()" aria-label="Abrir menú">
+      ☰
+    </button>
   </header>
 
   <nav id="sidebarMenu">
@@ -118,6 +135,8 @@
   <div class="content">
     <h1>Bienvenido a tu panel, <span id="userName">Usuario</span></h1>
     <p>Aquí puedes gestionar tu bienestar y mejorar tu descanso con nuestras herramientas inteligentes.</p>
+    <p>En el panel encontrarás opciones para gestionar tus planes, registrar tus pagos y citas, configurar tus preferencias, y contactar con terapeutas de sueños. Además, podrás vincular dispositivos que te ayudarán a monitorear tu calidad de sueño y salud en general.</p>
+    <p>Explora todas las funcionalidades y aprovecha al máximo las herramientas personalizadas que CalMind tiene para ofrecerte. ¡Estamos aquí para ayudarte a alcanzar un descanso óptimo y una vida más saludable!</p>
   </div>
 
   <footer>
@@ -126,7 +145,9 @@
 
   <script>
     function toggleMenu() {
-      document.getElementById("sidebarMenu").classList.toggle("open");
+      const menu = document.getElementById("sidebarMenu");
+      menu.classList.toggle("open");
+      document.querySelector(".hamburger").classList.toggle("open");
     }
 
     const user = JSON.parse(localStorage.getItem("user"));

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Registro Pagos - CalMind</title>
+  <title>Historial de Planes y Citas - CalMind</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -17,12 +17,51 @@
       color: white;
       padding: 15px;
       text-align: center;
+      border-radius: 8px;
+    }
+    h1 {
+      margin: 0;
+      font-size: 2rem;
     }
     main {
-      margin-top: 20px;
+      margin-top: 40px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
     }
-    a {
-      display: inline-block;
+    .history-container {
+      background-color: #ffffff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 800px;
+    }
+    .section-title {
+      color: #00e6e6;
+      font-size: 1.5rem;
+      margin-bottom: 20px;
+    }
+    .history-item {
+      background-color: #f9f9f9;
+      padding: 15px;
+      margin: 10px 0;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    }
+    .history-item p {
+      margin: 5px 0;
+    }
+    .status {
+      font-weight: bold;
+      color: #00b8b8;
+    }
+    .date {
+      font-style: italic;
+      color: #888;
+    }
+    .back-link {
       margin-top: 20px;
       color: #00e6e6;
       text-decoration: none;
@@ -31,12 +70,48 @@
   </style>
 </head>
 <body>
+
   <header>
-    <h1>Registro Pagos</h1>
+    <h1>Historial de Planes y Citas - CalMind</h1>
   </header>
+
   <main>
-    <p>Esta es la sección de <strong>Registro Pagos</strong> dentro del sistema CalMind.</p>
-    <a href="dashboard.html">← Volver al Panel</a>
+    <div class="history-container">
+    
+      <div class="section-title">Planes Adquiridos</div>
+      <div class="history-item">
+        <p><strong>Plan:</strong> Plan Premium Mensual</p>
+        <p><strong>Fecha de Adquisición:</strong> 10 de enero, 2025</p>
+        <p><strong>Estado:</strong> <span class="status">Activo</span></p>
+        <p class="date">Fecha de Expiración: 10 de febrero, 2025</p>
+      </div>
+      <div class="history-item">
+        <p><strong>Plan:</strong> Plan Premium Mensual</p>
+        <p><strong>Fecha de Adquisición:</strong> 1 de diciembre, 2024</p>
+        <p><strong>Estado:</strong> <span class="status">Caducado</span></p>
+        <p class="date">Fecha de Expiración: 1 de enero, 2025</p>
+      </div>
+
+
+      <div class="section-title">Citas con Profesionales</div>
+      <div class="history-item">
+        <p><strong>Profesional:</strong> Dr. Ana García</p>
+        <p><strong>Especialidad:</strong> Trastornos del Sueño</p>
+        <p><strong>Fecha de Cita:</strong> 12 de enero, 2025</p>
+        <p><strong>Resultado:</strong> <span class="status">Excelente</span></p>
+        <p><strong>Notas:</strong> El Dr. Ana García recomendó una rutina de sueño personalizada, mejorando significativamente la calidad del descanso.</p>
+      </div>
+      <div class="history-item">
+        <p><strong>Profesional:</strong> Dr. Luis Pérez</p>
+        <p><strong>Especialidad:</strong> Salud Mental</p>
+        <p><strong>Fecha de Cita:</strong> 5 de enero, 2025</p>
+        <p><strong>Resultado:</strong> <span class="status">Bueno</span></p>
+        <p><strong>Notas:</strong> Se discutieron estrategias para reducir el estrés y mejorar el bienestar emocional. La consulta fue útil.</p>
+      </div>
+    </div>
+
+    <a href="dashboard.html" class="back-link">← Volver al Panel</a>
   </main>
+
 </body>
 </html>

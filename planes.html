@@ -1,42 +1,403 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Planes - CalMind</title>
-  <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Planes - CalMind</title>
+<style>
     body {
       font-family: Arial, sans-serif;
-      background-color: #f0f2f5;
+      background-color: #060230;
       margin: 0;
       padding: 20px;
-      color: #1c1f5a;
+      color: #17fff0;
     }
+
     header {
-      background-color: #1c1f5a;
-      color: white;
+      background-color: #342d9d;
+      color: #060230;
       padding: 15px;
       text-align: center;
+      border-radius: 8px;
     }
+
     main {
       margin-top: 20px;
     }
-    a {
-      display: inline-block;
-      margin-top: 20px;
-      color: #00e6e6;
-      text-decoration: none;
-      font-weight: bold;
+
+    h2 {
+      color: #17fff0;
     }
-  </style>
+
+    .plan-container {
+      display: flex;
+      justify-content: space-around;
+      gap: 20px;
+      margin-bottom: 40px;
+    }
+
+    .plan {
+      background-color: #1a0d4a;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+      width: 45%;
+      transition: transform 0.3s ease;
+    }
+
+    .plan h3 {
+      margin-top: 0;
+      color: #17fff0;
+    }
+
+    .plan p {
+      color: #d1d1d1;
+    }
+
+    .plan button {
+      padding: 12px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+      margin-top: 10px;
+      transition: background-color 0.3s ease;
+      width: 100%;
+    }
+
+    .gratuito {
+      background-color: #d1d1d1;
+      color: #060230;
+    }
+
+    .gratuito:hover {
+      background-color: #b0b0b0;
+    }
+
+    .premium {
+      background-color: #d4af37;
+      color: #060230;
+    }
+
+    .premium:hover {
+      background-color: #b38a2d;
+    }
+
+    .payment-method {
+      margin-top: 30px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+      display: none;
+    }
+
+    .payment-method h3 {
+      color: #17fff0;
+      margin-bottom: 20px;
+    }
+
+    .payment-method button {
+      padding: 14px 28px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+      width: 200px;
+      transition: background-color 0.3s ease;
+    }
+
+    .payment-method button.credit-card {
+      background-color: #28a745;
+      color: #060230;
+    }
+
+    .payment-method button.credit-card:hover {
+      background-color: #218838;
+    }
+
+    .payment-method button.yape {
+      background-color: #6a1b9a;
+      color: #060230;
+    }
+
+    .payment-method button.yape:hover {
+      background-color: #4a148c;
+    }
+
+    .payment-method button.plin {
+      background-color: #1a73e8;
+      color: #060230;
+    }
+
+    .payment-method button.plin:hover {
+      background-color: #135ba1;
+    }
+
+    .payment-form {
+      display: none;
+      margin-top: 40px;
+      background-color: #d1d1d1;
+      padding: 30px;
+      border-radius: 8px;
+      width: 100%;
+      max-width: 400px;
+      margin: 0 auto;
+    }
+
+    .payment-form label {
+      display: block;
+      margin-bottom: 10px;
+      color: #060230;
+    }
+
+    .payment-form input {
+      padding: 12px;
+      margin-bottom: 15px;
+      width: 100%;
+      border-radius: 5px;
+      border: 1px solid #060230;
+      background-color: #fff;
+      color: #060230;
+    }
+
+    .qr-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 30px;
+      margin-top: 20px;
+      display: none;
+    }
+
+    .qr-item {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+
+    .qr-container img {
+      width: 150px;
+      height: 150px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      transition: transform 0.3s ease;
+    }
+
+    .qr-container img:hover {
+      transform: scale(1.05);
+    }
+
+    .qr-container button {
+      background-color: #d4af37;
+      color: #060230;
+      padding: 12px 25px;
+      border-radius: 5px;
+      border: none;
+      cursor: pointer;
+      font-size: 16px;
+      margin-top: 10px;
+      transition: background-color 0.3s ease;
+    }
+
+    .qr-container button:hover {
+      background-color: #b38a2d;
+    }
+
+    .back-link {
+      display: inline-block;
+      background-color: #342d9d;
+      color: #060230;
+      padding: 12px 20px;
+      border-radius: 5px;
+      text-decoration: none;
+      font-size: 16px;
+      margin-top: 20px;
+      transition: background-color 0.3s ease;
+      cursor: pointer;
+      text-align: center;
+    }
+
+    .back-link:hover {
+      background-color: #00b8a9;
+    }
+
+    .selected-plan {
+      background-color: #1a0d4a;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+      margin-top: 40px;
+      color: #17fff0;
+      text-align: center;
+    }
+
+    .selected-plan h3 {
+      color: #d4af37;
+    }
+
+    .selected-plan p {
+      color: #d1d1d1;
+    }
+
+    .selected-plan-highlight {
+      background-color: #ffcc00;
+      border: 2px solid #d4af37;
+      transform: scale(1.05);
+      box-shadow: 0 0 10px rgba(255, 204, 0, 0.8);
+    }
+
+    #pay-button {
+      background-color: #fff;
+      color: #060230;
+      border-radius: 50%;
+      padding: 20px 40px;
+      font-size: 16px;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    #pay-button:hover {
+      background-color: #d4af37;
+      color: #fff;
+    }
+
+    #payment-status {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: rgba(0, 128, 0, 0.8);
+      color: white;
+      padding: 20px;
+      border-radius: 8px;
+      font-size: 18px;
+      z-index: 1000;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    }
+</style>
 </head>
 <body>
-  <header>
-    <h1>Planes</h1>
-  </header>
-  <main>
-    <p>Esta es la sección de <strong>Planes</strong> dentro del sistema CalMind.</p>
-    <a href="dashboard.html">← Volver al Panel</a>
-  </main>
+<header>
+<h1>Planes - CalMind</h1>
+</header>
+<main>
+<h2>Selecciona tu plan</h2>
+<div class="plan-container">
+<div class="plan" id="plan-free">
+<h3>Plan Gratuito</h3>
+<p>Accede a funcionalidades básicas sin costo alguno. ¡Empieza a disfrutar de los beneficios sin compromiso! Esta opción es ideal si eres nuevo en CalMind y deseas explorar nuestras características esenciales.</p>
+<button aria-label="button" class="gratuito" onclick="selectPlan('free')">Seleccionar Plan Gratuito</button>
+</div>
+<div class="plan" id="plan-premium">
+<h3>Plan Premium Mensual</h3>
+<p>Obtén acceso completo a todas las funcionalidades de CalMind por S/. 29.99 al mes. Perfecto si deseas desbloquear todas las características avanzadas para una experiencia más completa, sin restricciones.</p>
+<button aria-label="button" class="premium" onclick="selectPlan('premium')">Seleccionar Plan Premium</button>
+</div>
+</div>
+<hr style="border: 1px solid #17fff0; margin-top: 40px;"/>
+<div class="payment-method" id="payment-method">
+<h3>Selecciona tu método de pago</h3>
+<button aria-label="button" class="credit-card" onclick="showPaymentForm()">Tarjeta de Crédito</button>
+<button aria-label="button" class="yape" onclick="showQR('Yape')">Yape</button>
+<button aria-label="button" class="plin" onclick="showQR('Plin')">Plin</button>
+</div>
+<hr style="border: 1px solid #17fff0; margin-top: 40px;"/>
+<div class="payment-form" id="payment-form">
+<h3><strong>Formulario de pago con tarjeta</strong></h3>
+<form>
+<label for="card-number">Número de tarjeta:</label>
+<input id="card-number" required="" type="text"/><br/><br/>
+<label for="expiration-date">Fecha de expiración:</label>
+<input id="expiration-date" required="" type="text"/><br/><br/>
+<label for="cvv">CVV:</label>
+<input id="cvv" required="" type="text"/><br/><br/>
+<button aria-label="button" id="pay-button" onclick="paymentSuccess(event)" type="button">Pagar</button>
+</form>
+</div>
+<div class="qr-container" id="qr-code">
+<div class="qr-item">
+<img alt="Yape" id="yape-img" src="img/yape.png" style="display: none;"/>
+</div>
+<div class="qr-item">
+<img alt="Plin" id="plin-img" src="img/plin.png" style="display: none;"/>
+</div>
+<div class="qr-item">
+<button aria-label="button" id="pay-button" onclick="paymentSuccess(event)">Pagar</button>
+</div>
+</div>
+<div class="selected-plan" id="selected-plan" style="display:none;">
+<h3>Plan Seleccionado</h3>
+<p id="plan-details"></p>
+</div>
+<a class="back-link" href="dashboard.html">← Volver al Panel</a>
+<div id="payment-status">
+<p>¡Pago realizado con éxito!</p>
+</div>
+</main>
+<footer>
+<div class="footer-content">
+<p>© 2025 <strong>CalMind</strong> - <span>Startup UPC</span></p>
+<p>Todos los derechos reservados.</p>
+</div>
+</footer>
+<script>
+    let selectedPlan = '';
+
+    function selectPlan(plan) {
+      selectedPlan = plan;
+      const paymentMethod = document.getElementById("payment-method");
+      paymentMethod.style.display = "block"; 
+      document.getElementById("selected-plan").style.display = "none"; 
+
+      document.getElementById("plan-free").classList.remove("selected-plan-highlight");
+      document.getElementById("plan-premium").classList.remove("selected-plan-highlight");
+
+      if (plan === 'free') {
+        document.getElementById("plan-details").innerHTML = "Estás en el Plan Gratuito. Disfruta de las funcionalidades básicas sin costo. Esta es una excelente opción si quieres probar las características esenciales y comenzar tu viaje con CalMind.";
+        document.getElementById("plan-free").classList.add("selected-plan-highlight");
+      } else if (plan === 'premium') {
+        document.getElementById("plan-details").innerHTML = "Estás en el Plan Premium Mensual. Disfruta de todas las funcionalidades por S/. 29.99 al mes. Con este plan, tendrás acceso a todas las herramientas avanzadas de CalMind para mejorar tu experiencia.";
+        document.getElementById("plan-premium").classList.add("selected-plan-highlight");
+      }
+    }
+
+    function showPaymentForm() {
+      const form = document.getElementById("payment-form");
+      const qrCode = document.getElementById("qr-code");
+      form.style.display = "block"; 
+      qrCode.style.display = "none"; 
+    }
+
+    function showQR(method) {
+      const form = document.getElementById("payment-form");
+      const qrCode = document.getElementById("qr-code");
+      form.style.display = "none"; 
+      qrCode.style.display = "flex"; 
+
+      if (method === 'Yape') {
+        document.getElementById("yape-img").style.display = "block";
+        document.getElementById("plin-img").style.display = "none";
+      } else if (method === 'Plin') {
+        document.getElementById("plin-img").style.display = "block";
+        document.getElementById("yape-img").style.display = "none";
+      }
+    }
+
+    function paymentSuccess(event) {
+      event.preventDefault(); 
+      document.getElementById("payment-status").style.display = "block"; 
+      
+      setTimeout(function() {
+        document.getElementById("payment-status").style.display = "none";
+      }, 3000);
+      
+      document.getElementById("payment-method").style.display = "none"; 
+      document.getElementById("selected-plan").style.display = "block"; 
+    }
+</script>
 </body>
 </html>

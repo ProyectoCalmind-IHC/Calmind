@@ -7,7 +7,7 @@
   <style>
     body {
       font-family: Arial, sans-serif;
-      background-color: #f0f2f5;
+      background-color: #f5f7fa;
       margin: 0;
       padding: 20px;
       color: #1c1f5a;
@@ -15,14 +15,53 @@
     header {
       background-color: #1c1f5a;
       color: white;
-      padding: 15px;
+      padding: 20px;
       text-align: center;
+      border-radius: 8px;
+    }
+    h1 {
+      margin: 0;
+      font-size: 2rem;
     }
     main {
-      margin-top: 20px;
+      margin-top: 40px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
     }
-    a {
-      display: inline-block;
+    .history-container {
+      background-color: #ffffff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 800px;
+    }
+    .section-title {
+      color: #00e6e6;
+      font-size: 1.5rem;
+      margin-bottom: 20px;
+    }
+    .history-item {
+      background-color: #f9f9f9;
+      padding: 15px;
+      margin: 10px 0;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    }
+    .history-item p {
+      margin: 5px 0;
+    }
+    .status {
+      font-weight: bold;
+      color: #00b8b8;
+    }
+    .date {
+      font-style: italic;
+      color: #888;
+    }
+    .back-link {
       margin-top: 20px;
       color: #00e6e6;
       text-decoration: none;
@@ -31,12 +70,45 @@
   </style>
 </head>
 <body>
+
   <header>
-    <h1>Registro Citas</h1>
+    <h1>Registro de Citas - CalMind</h1>
   </header>
+
   <main>
-    <p>Esta es la sección de <strong>Registro Citas</strong> dentro del sistema CalMind.</p>
-    <a href="dashboard.html">← Volver al Panel</a>
+    <div class="history-container">
+      
+      <div class="section-title">Historial de Citas</div>
+      <div class="history-item">
+        <p><strong>Profesional:</strong> Dr. Ana García</p>
+        <p><strong>Especialidad:</strong> Trastornos del Sueño</p>
+        <p><strong>Fecha de Cita:</strong> 12 de enero, 2025</p>
+        <p><strong>Resultado:</strong> <span class="status">Excelente</span></p>
+        <p><strong>Recomendaciones:</strong> El Dr. Ana García recomendó una rutina de sueño personalizada, incluyendo una técnica de relajación antes de dormir. También sugirió evitar el uso de dispositivos electrónicos una hora antes de acostarse.</p>
+        <p><strong>Notas:</strong> El paciente ha notado una mejora significativa en la calidad del sueño después de implementar las recomendaciones. Se ha agendado una nueva cita dentro de un mes para hacer un seguimiento.</p>
+      </div>
+
+      <div class="history-item">
+        <p><strong>Profesional:</strong> Dr. Luis Pérez</p>
+        <p><strong>Especialidad:</strong> Salud Mental</p>
+        <p><strong>Fecha de Cita:</strong> 5 de enero, 2025</p>
+        <p><strong>Resultado:</strong> <span class="status">Bueno</span></p>
+        <p><strong>Recomendaciones:</strong> El Dr. Luis Pérez sugirió practicar técnicas de meditación y mindfulness para reducir los niveles de ansiedad. También recomendó realizar un diario de emociones para identificar patrones.</p>
+        <p><strong>Notas:</strong> El paciente se sintió más relajado después de la cita y comenzará a integrar las recomendaciones en su rutina diaria.</p>
+      </div>
+
+      <div class="history-item">
+        <p><strong>Profesional:</strong> Dra. Valeria Martínez</p>
+        <p><strong>Especialidad:</strong> Nutrición y Bienestar</p>
+        <p><strong>Fecha de Cita:</strong> 18 de diciembre, 2024</p>
+        <p><strong>Resultado:</strong> <span class="status">Satisfactorio</span></p>
+        <p><strong>Recomendaciones:</strong> La Dra. Valeria Martínez sugirió cambiar algunos hábitos alimenticios y aumentar la ingesta de alimentos ricos en magnesio para ayudar con el descanso. También aconsejó beber más agua durante el día.</p>
+        <p><strong>Notas:</strong> El paciente mostró disposición para seguir el plan nutricional. Se agendó una cita de seguimiento para evaluar los resultados dentro de dos semanas.</p>
+      </div>
+    </div>
+
+    <a href="dashboard.html" class="back-link">← Volver al Panel</a>
   </main>
+
 </body>
 </html>

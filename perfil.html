@@ -7,19 +7,54 @@
   <style>
     body {
       font-family: Arial, sans-serif;
-      background-color: #f0f2f5;
+      background-color: #060230;
       margin: 0;
       padding: 20px;
-      color: #1c1f5a;
+      color: #17fff0;
     }
     header {
-      background-color: #1c1f5a;
+      background-color: #342d9d;
       color: white;
       padding: 15px;
       text-align: center;
+      border-radius: 8px;
     }
     main {
       margin-top: 20px;
+    }
+    .profile-section {
+      background-color: #1a0d4a;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    .profile-section h2 {
+      color: #00e6e6;
+    }
+    .profile-section p {
+      font-size: 1.2rem;
+      color: #d1d1d1;
+    }
+    .profile-section input {
+      padding: 10px;
+      margin: 10px 0;
+      width: 100%;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      background-color: #060230;
+      color: #17fff0;
+    }
+    .profile-section button {
+      padding: 10px 20px;
+      background-color: #00e6e6;
+      border: none;
+      border-radius: 5px;
+      color: #000;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .profile-section button:hover {
+      background-color: #00b8b8;
     }
     a {
       display: inline-block;
@@ -32,11 +67,72 @@
 </head>
 <body>
   <header>
-    <h1>Perfil</h1>
+    <h1>Perfil - CalMind</h1>
   </header>
   <main>
-    <p>Esta es la sección de <strong>Perfil</strong> dentro del sistema CalMind.</p>
+    <div class="profile-section">
+      <h2>Información del Usuario</h2>
+      <p><strong>Nombre:</strong> <span id="userName">Cargando...</span></p>
+      <p><strong>Edad:</strong> <span id="userAge">Cargando...</span></p>
+      <p><strong>Fecha de Nacimiento:</strong> <span id="userDOB">Cargando...</span></p>
+      <p><strong>Sexo:</strong> <span id="userGender">Cargando...</span></p>
+      <p><strong>Correo:</strong> <span id="userEmail">Cargando...</span></p>
+      
+      <h3>Actualizar Información</h3>
+      <form id="updateForm">
+        <input type="text" id="updateName" placeholder="Nuevo Nombre" />
+        <input type="number" id="updateAge" placeholder="Nueva Edad" />
+        <input type="date" id="updateDOB" placeholder="Nueva Fecha de Nacimiento" />
+        <select id="updateGender">
+          <option value="male">Masculino</option>
+          <option value="female">Femenino</option>
+          <option value="other">Otro</option>
+        </select>
+        <input type="email" id="updateEmail" placeholder="Nuevo Correo" />
+        
+        <button type="submit">Actualizar</button>
+      </form>
+    </div>
     <a href="dashboard.html">← Volver al Panel</a>
   </main>
+
+  <script>
+    const user = JSON.parse(localStorage.getItem("user"));
+    if (user) {
+      document.getElementById("userName").textContent = user.name;
+      document.getElementById("userAge").textContent = user.age;
+      document.getElementById("userDOB").textContent = user.dob;
+      document.getElementById("userGender").textContent = user.gender === "male" ? "Masculino" : user.gender === "female" ? "Femenino" : "Otro";
+      document.getElementById("userEmail").textContent = user.email;
+    }
+
+    document.getElementById("updateForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      const updatedName = document.getElementById("updateName").value;
+      const updatedAge = document.getElementById("updateAge").value;
+      const updatedDOB = document.getElementById("updateDOB").value;
+      const updatedGender = document.getElementById("updateGender").value;
+      const updatedEmail = document.getElementById("updateEmail").value;
+
+      const updatedUser = {
+        name: updatedName || user.name,
+        age: updatedAge || user.age,
+        dob: updatedDOB || user.dob,
+        gender: updatedGender || user.gender,
+        email: updatedEmail || user.email
+      };
+      
+      localStorage.setItem("user", JSON.stringify(updatedUser));
+
+      document.getElementById("userName").textContent = updatedUser.name;
+      document.getElementById("userAge").textContent = updatedUser.age;
+      document.getElementById("userDOB").textContent = updatedUser.dob;
+      document.getElementById("userGender").textContent = updatedUser.gender === "male" ? "Masculino" : updatedUser.gender === "female" ? "Femenino" : "Otro";
+      document.getElementById("userEmail").textContent = updatedUser.email;
+
+      alert("Información actualizada con éxito");
+    });
+  </script>
 </body>
 </html>
